@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <title>SkyCast</title>
+        <link rel="shortcut icon" href="/static/skycast_favicon.ico" type="image/x-icon">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            html{
+                height: 100%;
+            }
+            .nav-bar{
+                box-sizing: border-box;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                gap: 10px;
+                padding: 1.25em;
+                background-color: aqua;
+            }
+            .logo-nav{
+                cursor: pointer;
+            }
+            .inp-cont{
+                box-sizing: border-box;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.2em;
+                border-radius: 2em;
+                width: 30%;
+            }
+            .txt{
+                margin: 3px;
+                outline: 0;
+                border: 0;
+                width: 90%;
+            }
+            .icon{
+                cursor: pointer;
+                background-color: white;
+                border: 0;
+                outline: 0;
+            }
+            .link-cont{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap:20px;
+            }
+            li{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style-type: none;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+                position: relative;
+                font-size: 20px;
+            }
+            a:after{
+                content: '';
+                position: absolute;
+                background-color: black;
+                width: 100%;
+                height: 2px;
+                left: 0;
+                bottom: 0;
+                transform: scaleX(0);
+                transform-origin: 0% 100%;
+                transition: 0.4s;
+            }
+            a:hover{
+                color: black;
+            }
+            a:hover::after{
+                transform: scaleX(1);
+            }
+            .main{
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                gap:20px;
+                padding: 50px;
+                align-items: flex-start;
+                justify-content: center;
+                width: 100%;
+                height: 80%;
+            }
+            .set1{
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f7f7f7;
+                height: 20%;
+                width: 100%;
+                border-top-right-radius: 9px;
+                border-top-left-radius:9px;
+            }
+            .weather{
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                width: 25%;
+                height: 40%;
+                border-radius: 10px;
+            }
+            .tle{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .sec{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            h1{
+                margin: 0;
+            }
+            p{
+                margin: 0;
+            }
+            form{
+                box-sizing: border-box;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0;
+                border-radius: 2em;
+                width: 100%;
+            }
+            .img-div{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>   
+    </head>
+    <body>
+        <div class="nav-bar bg-secondary">
+            <div class="logo-nav"><img src="/static/skcst.png" alt="skycast" width="40"></div>
+
+            <div class="inp-cont">
+                <form action="http://127.0.0.1:8770/srch" method="POST" id="SearchForm"> 
+                    <button type='submit' value='' name='btn1' class="icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input type="text" name="inp1" list="sugg" placeholder="Search your Address, City or Zip Code" class="txt">          
+                </form> 
+            </div>
+                <div class="link-cont">
+                    <li><a href="{{url_for('main')}}">Home</a></li>
+                    <li><a href="{{url_for('abt')}}">About</a></li>
+                </div>
+        </div>
+        <h1 class="tle">Temperature of {{data['city']}}</h1>    
+        <div class="main">
+            <div class="weather bg-white border">
+                <div class="set1 border-bottom">
+                    Temperature
+                </div>
+                <div class="sec">
+                    <div class="img-div">
+                        <img src="{{data['icon'][1]}}" alt="">
+                        <h2>{{data['temp']}}</h2>
+                    </div>
+                    <p>Temp:-{{data['temp']}}</p>   
+                    <p>Feels like:-{{data['feels_like']}}</p>      
+                    <p>{{data['icon'][0]}}</p>          
+                </div>
+            </div>
+            <div class="weather border">
+                <div class="set1 border-bottom">
+                    Humidity info
+                </div>
+                <div class="sec">
+                    <h2>Humidity:-{{data['humidity']}}</h2>
+                    <p>Wind Degree:-{{data['wind_deg']}}</p>
+                    <p>Wind Direction:-{{data['wind_dir']}}</p>
+                </div>
+            </div>
+            <div class="weather border">
+                <div class="set1 border-bottom">
+                    Wind info
+                </div>
+                <div class="sec">
+                    <h2>Wind Speed:-{{data['wind_speed']}}</h2>
+                    <p>Pressure:-{{data['pressure']}}</p>
+                    <p>Gust Speed:-{{data['gust']}}</p>
+                </div>
+            </div>
+            <div class="weather border">
+                <div class="set1 border-bottom">
+                    Aqi
+                </div>
+                <div class="sec">
+                    <h2><span>{{data['aqi'][1][2]}}</span> Aqi {{data['aqi'][0]}}</h2>
+                    <p>{{data['aqi'][1][0]}}</p>
+                    <p>{{data['aqi'][1][1]}}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
