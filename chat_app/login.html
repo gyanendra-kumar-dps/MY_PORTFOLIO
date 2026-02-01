@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            margin: 100px auto;
+            padding: 30px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin: -30px -30px 20px -30px; /* extends the header to the container edges */
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .login-form input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .login-form button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        .other-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .google{
+            width: 100%;
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            border: 1.5px solid transparent;
+            transition: border-color 0.5s;
+            margin:2px;
+            border-radius: 20px;
+            cursor: pointer;
+            border:#9da3a7 solid;
+        }
+        .google:hover{
+            border:#ea4234 solid;
+            text-decoration: none;
+            transition: border-color 0.5s;
+        }
+        .facebook{
+            width: 100%;
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            border: 1.5px solid transparent;
+            transition: border-color 0.5s;
+            margin:2px;
+            border-radius: 20px;
+            cursor: pointer;
+            border:#9da3a7 solid;
+        }
+        .facebook:hover{
+            border:#1976f3 solid;
+            text-decoration: none;
+            transition: border-color 0.5s;
+        }
+        .hr{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hr hr{
+            flex:1;
+            border:none;
+            border-top: 1px solid black;
+        }
+        .hr span{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Login</h2>
+        </div>
+        <div class="other-container">
+            <div class="google">
+                <p>Continue with Google</p> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png" alt="" width="15%">
+            </div>
+            <div class="facebook">
+                <p>Continue with Facebook</p> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/1280px-Facebook_Logo_2023.png?20231011121526" alt="" width="15%">
+            </div>
+        </div>
+        <div class="hr">
+            <hr>
+            <span>OR</span>
+            <hr>
+        </div>
+        <form class="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="login-footer">
+            <p>Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+</body>
+</html>
